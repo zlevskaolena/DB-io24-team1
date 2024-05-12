@@ -41,7 +41,10 @@ module.exports = {
           '/requirements/stakeholders-needs',
         ]
     },
-
+    {
+      title: 'Розроблення вимог до функціональности системи',
+      path:"/use cases/"
+    },
     {
       title: 'Проєктування архітектури системи',
       path:"/design/"
