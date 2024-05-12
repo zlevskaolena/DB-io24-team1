@@ -27,9 +27,8 @@
     Manager --> ManageSurveys
     Admin -r-> ManageRequest
     Admin -u-> InteractionWithManagersSurveys
-    Admin -l-|> Manager
-    Manager -l-|> Respondent
-    
+    Admin -l-> Manager
+    Manager -l-> Respondent
     
 @enduml
 </center>
