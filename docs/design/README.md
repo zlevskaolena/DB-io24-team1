@@ -140,4 +140,4 @@
 
 ## Реляційна схема
 
-![Реляційна схема](https://user-images.githubusercontent.com/89911844/208446950-788117bd-fab0-4e1c-b2b6-cb4f5440e03e.png)
+![Реляційна схема](https://i.postimg.cc/qRG5WCJG/Shared-Screenshot26.jpg)
