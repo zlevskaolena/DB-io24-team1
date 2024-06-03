@@ -293,11 +293,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 const express = require('express');
 const { Pool } = require('./db/pool.js');
-const { get, getAll, post, deleted, update } = require('./controller/controllers.js')
+const { get, getAll, post, postQuiz, deleted, update } = require('./controller/controllers.js');
 
 const app = express();
 const jsonParse = express.json();
 
+app.post('/quiz/', jsonParse, postQuiz);
 app.get('/question/:id', get);
 app.get('/questions/', getAll);
 app.post('/question/', jsonParse, post);
@@ -307,6 +308,7 @@ app.delete('/question/:id', deleted);
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
 });
+
 ```
 
 ### Pool.js
@@ -343,6 +345,18 @@ const getMaxQuestionId = () => {
             }
             return resolve(result);
         });
+    });
+};
+
+const postQuiz = (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+    const sql = 'INSERT INTO mysql2.quizes (name) VALUES (?)';
+    Pool.query(sql, [req.body.name], (error, result) => {
+        if (error) {
+            console.error('Error inserting quiz:', error);
+            return res.status(500).json(error);
+        }
+        res.send(result);
     });
 };
 
@@ -415,5 +429,5 @@ const update = (req, res) => {
     });
 };
 
-module.exports = { get: get, getAll: getAll, post: post, deleted: deleted, update: update };
+module.exports = { get: get, getAll: getAll, post: post, postQuiz, deleted: deleted, update: update };
 ```
